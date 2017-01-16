@@ -1,0 +1,19 @@
+{
+  "name": "madrugada_socket",
+  "version": "1.0.0",
+  "description": "Small example of using express, socket.io and event listeners",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "Rene Ramirez",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0",
+    "moment": "^2.17.1",
+    "random-number": "0.0.7",
+    "socket.io": "^1.7.2"
+  }
+}
