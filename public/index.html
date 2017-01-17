@@ -1,14 +1,113 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Madrugada</title>
+    <link href="https://fonts.googleapis.com/css?family=Arimo|Fredericka+the+Great|Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<style>
+    html, body, body > .container , body > .container > .row {
+        height: 100%;
+    }
+    body{
+        background-color: #d04f4f;
+        overflow: hidden;
+    }
+    body > nav.navbar{
+        background: white;
+        -webkit-box-shadow: 0px -7px 50px 0px #521c1c;
+        -moz-box-shadow: 0px -7px 50px 0px #521c1c;
+        box-shadow: 0px -7px 50px 0px #521c1c;
+        font-family: 'Montserrat', sans-serif;
+    }
+    #img-album{
+        -webkit-box-shadow: 0px 18px 11px -13px #521c1c;
+        -moz-box-shadow: 0px 18px 11px -13px #521c1c;
+        box-shadow: 0px 18px 11px -13px #521c1c;
+        max-width: 500px;
+        width: 100%;
+    }
+    #last-update{
+        color: white;
+    }
+    #followers{
+        position: absolute;
+        bottom: 0;
+        right: 20px;
+        text-align: right;
+    }
+    #followers .followers-number{
+        font-family: 'Fredericka the Great', cursive;
+        color: white;
+        font-size: 4em;
+        line-height: 1em;
+    }
+    @media (min-width: 600px) {
+        #followers .followers-number{
+            font-size: 10vw;
+            line-height: 10vw;
+        }
+    }
+    #followers .followers-text{
+        font-family: 'Arimo', sans-serif;
+        color: white;
+    }
+</style>
+
 </head>
 <body>
-
-<h1>Madrugada</h1>
+<nav class="navbar fixed-top navbar-light bg-faded">
+    <div class="container">
+        <h1 class="navbar-brand mb-0 text-uppercase">Madrugada</h1>
+    </div>
+</nav>
+<div id="main-container" class="container">
+    <div class="row ">
+        <div class="col align-self-center text-center">
+            <div>
+                <img id="img-album" src="assets/img/madrugada.jpg" alt="Madrugada Album Cover"/>
+            </div>
+            <div>
+                <br>
+                <button id="btn--send-update" class="btn btn-secondary" type="button">update</button>
+                <br>
+                <br>
+                <span id="last-update"></span>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="followers">
+     <span class="followers-text">
+        followers
+    </span><br>
+    <span id="followers-number" class="followers-number">
+    </span>
+</div>
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 <script src="/socket.io/socket.io.js"></script>
+<script src="assets/js/count-up.min.js"></script>
 <script>
     var socket = io();
+    var numAnim;
+    $(document).on('click', '#btn--send-update', function() {
+       socket.emit('update-page');
+    });
+
+    socket.on('onUpdateData', function (data) {
+        console.log(data);
+        $('#last-update').html(data.date)
+        if (numAnim === undefined) {
+            numAnim = new CountUp("followers-number", 0, data.followers,0 , 2);
+            numAnim.start();
+        }else{
+            numAnim.update(data.followers);
+        }
+    });
+
 </script>
 </body>
 </html>
