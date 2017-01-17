@@ -1,0 +1,46 @@
+html, body, body > .container , body > .container > .row {
+    height: 100%;
+}
+body{
+    background-color: #d04f4f;
+    overflow: hidden;
+}
+body > nav.navbar{
+    background: white;
+    -webkit-box-shadow: 0px -7px 50px 0px #521c1c;
+    -moz-box-shadow: 0px -7px 50px 0px #521c1c;
+    box-shadow: 0px -7px 50px 0px #521c1c;
+    font-family: 'Montserrat', sans-serif;
+}
+#img-album{
+    -webkit-box-shadow: 0px 18px 11px -13px #521c1c;
+    -moz-box-shadow: 0px 18px 11px -13px #521c1c;
+    box-shadow: 0px 18px 11px -13px #521c1c;
+    max-width: 500px;
+    width: 100%;
+}
+#last-update{
+    color: white;
+}
+#followers{
+    position: absolute;
+    bottom: 0;
+    right: 20px;
+    text-align: right;
+}
+#followers .followers-number{
+    font-family: 'Fredericka the Great', cursive;
+    color: white;
+    font-size: 4em;
+    line-height: 1em;
+}
+@media (min-width: 600px) {
+    #followers .followers-number{
+        font-size: 10vw;
+        line-height: 10vw;
+    }
+}
+#followers .followers-text{
+    font-family: 'Arimo', sans-serif;
+    color: white;
+}

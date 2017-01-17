@@ -6,55 +6,7 @@
     <title>Madrugada</title>
     <link href="https://fonts.googleapis.com/css?family=Arimo|Fredericka+the+Great|Montserrat" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-<style>
-    html, body, body > .container , body > .container > .row {
-        height: 100%;
-    }
-    body{
-        background-color: #d04f4f;
-        overflow: hidden;
-    }
-    body > nav.navbar{
-        background: white;
-        -webkit-box-shadow: 0px -7px 50px 0px #521c1c;
-        -moz-box-shadow: 0px -7px 50px 0px #521c1c;
-        box-shadow: 0px -7px 50px 0px #521c1c;
-        font-family: 'Montserrat', sans-serif;
-    }
-    #img-album{
-        -webkit-box-shadow: 0px 18px 11px -13px #521c1c;
-        -moz-box-shadow: 0px 18px 11px -13px #521c1c;
-        box-shadow: 0px 18px 11px -13px #521c1c;
-        max-width: 500px;
-        width: 100%;
-    }
-    #last-update{
-        color: white;
-    }
-    #followers{
-        position: absolute;
-        bottom: 0;
-        right: 20px;
-        text-align: right;
-    }
-    #followers .followers-number{
-        font-family: 'Fredericka the Great', cursive;
-        color: white;
-        font-size: 4em;
-        line-height: 1em;
-    }
-    @media (min-width: 600px) {
-        #followers .followers-number{
-            font-size: 10vw;
-            line-height: 10vw;
-        }
-    }
-    #followers .followers-text{
-        font-family: 'Arimo', sans-serif;
-        color: white;
-    }
-</style>
-
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 <nav class="navbar fixed-top navbar-light bg-faded">
@@ -90,24 +42,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 <script src="/socket.io/socket.io.js"></script>
 <script src="assets/js/count-up.min.js"></script>
-<script>
-    var socket = io();
-    var numAnim;
-    $(document).on('click', '#btn--send-update', function() {
-       socket.emit('update-page');
-    });
-
-    socket.on('onUpdateData', function (data) {
-        console.log(data);
-        $('#last-update').html(data.date)
-        if (numAnim === undefined) {
-            numAnim = new CountUp("followers-number", 0, data.followers,0 , 2);
-            numAnim.start();
-        }else{
-            numAnim.update(data.followers);
-        }
-    });
-
-</script>
+<script src="assets/js/main.js"></script>
 </body>
 </html>
